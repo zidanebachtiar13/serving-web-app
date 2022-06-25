@@ -27,7 +27,7 @@
         [:td.left "&nbsp&nbspLeaderboard"]]]]
      body]))
 
-(defn category [math-id]
+(defn category [math-id vl-id english-id]
   (base-page
     [:table
      [:tr
@@ -46,7 +46,7 @@
          "Score 2691" [:br] 
          "Rank 215 dari semua peserta" [:br]
          "Lvl. 100 of 100"]
-        [:a {:href "/content"} [:button "Start"]]]]
+        [:a {:href (str "/vl/" vl-id)} [:button "Start"]]]]
       [:td
        [:div.card2
         (image "images/english.png" "math")
@@ -54,7 +54,7 @@
          "Score 2691" [:br] 
          "Rank 215 dari semua peserta" [:br]
          "Lvl. 100 of 100"]
-        [:a {:href "/content"} [:button "Start"]]]]
+        [:a {:href (str "/english/" english-id)} [:button "Start"]]]]
       [:td
        [:div.card2
         (image "images/clojure.png" "math")
