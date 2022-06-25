@@ -11,7 +11,7 @@
                 :border "1px solid black"
                 :border-radius "5px"
                 :padding "15px"}]
-    [:button {:margin-top "200px"
+    [:button {:margin-top "230px"
               :position "absolute"
               :right "20px"
               :background-color "white"
@@ -26,7 +26,7 @@
 (defn math-quiz [problem]
   (html5
     [:head
-     [:title "Quiz"]
+     [:title "Math Quiz"]
      [:style style]]
     [:body
      [:p (get-in problem [:soal :soal-text])]
