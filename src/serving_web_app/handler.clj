@@ -6,15 +6,13 @@
             [serving-web-app.dashboard :as dashboard]
             [serving-web-app.result :as result]
             [serving-web-app.problems :as problem]
-            [serving-web-app.math :as math]
-            [serving-web-app.vl :as vl]
-            [serving-web-app.english :as english]))
+            [serving-web-app.quiz :as quiz]))
 
 (defroutes app-routes
   (GET "/" [] dashboard/base-page) 
-  (GET "/math" [] (math/math-quiz (problem/take-soal (shuffle problem/math))))
-  (GET "/vl" [] (vl/vl-quiz (problem/take-soal (shuffle problem/vl))))
-  (GET "/english" [] (english/english-quiz (problem/take-soal (shuffle problem/english))))
+  (GET "/math" [] (quiz/math-quiz (problem/take-soal (shuffle problem/math))))
+  (GET "/vl" [] (quiz/vl-quiz (problem/take-soal (shuffle problem/vl))))
+  (GET "/english" [] (quiz/english-quiz (problem/take-soal (shuffle problem/english))))
   (POST "/quiz" [no0-id no0 no1-id no1 no2-id no2 no3-id no3 no4-id no4 no5-id no5 no6-id no6 no7-id no7] (do (problem/reset-score)
                                                                                                               (problem/check no0-id no0)
                                                                                                               (problem/check no1-id no1)

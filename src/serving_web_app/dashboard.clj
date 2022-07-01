@@ -1,6 +1,6 @@
 (ns serving-web-app.dashboard
   (:require [hiccup.page :refer [html5 include-css]]
-            [hiccup.element :refer [image]]))
+            [hiccup.element :refer [image link-to]]))
 
 (defn base-page [& body]
   (html5
@@ -19,7 +19,7 @@
        [:tr
         [:td.lightText "Rank 100 dari semua peserta"]
         [:td
-         [:a.logout {:href "/logout"} "Log out"]]]]]
+         [:div.logout (link-to "/logout" "Log out")]]]]]
      [:a.button {:href "/leaderboard"}
       [:table
        [:tr
@@ -34,7 +34,7 @@
           "Score 2691" [:br] 
           "Rank 215 dari semua peserta" [:br]
           "Lvl. 100 of 100"]
-         [:a {:href "/math"} [:button "Start"]]]]
+         (link-to "/math" [:button "Start"])]]
        [:td
         [:div.card2
          (image "images/verbal_logic.png" "vl")
@@ -42,7 +42,7 @@
           "Score 2691" [:br] 
           "Rank 215 dari semua peserta" [:br]
           "Lvl. 100 of 100"]
-         [:a {:href "/vl"} [:button "Start"]]]]
+         (link-to "/vl" [:button "Start"])]]
        [:td
         [:div.card2
          (image "images/english.png" "english")
@@ -50,7 +50,7 @@
           "Score 2691" [:br] 
           "Rank 215 dari semua peserta" [:br]
           "Lvl. 100 of 100"]
-         [:a {:href "/english"} [:button "Start"]]]]
+         (link-to "/english" [:button "Start"])]]
        [:td
         [:div.card2
          (image "images/clojure.png" "clojure")
@@ -58,4 +58,4 @@
           "Score 2691" [:br] 
           "Rank 215 dari semua peserta" [:br]
           "Lvl. 100 of 100"]
-         [:a {:href "/clojure"} [:button "Start"]]]]]]]))
+         (link-to "/clojure" [:button "Start"])]]]]]))
