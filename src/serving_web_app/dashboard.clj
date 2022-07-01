@@ -25,41 +25,37 @@
        [:tr
         [:td [:i.gg-insights]]
         [:td.left "&nbsp&nbspLeaderboard"]]]]
-     body]))
-
-(defn category [vl-id english-id]
-  (base-page
-    [:table
-     [:tr
-      [:td
-       [:div.card2
-        (image "images/math.png" "math")
-        [:p 
-         "Score 2691" [:br] 
-         "Rank 215 dari semua peserta" [:br]
-         "Lvl. 100 of 100"]
-        [:a {:href "/math"} [:button "Start"]]]]
-      [:td
-       [:div.card2
-        (image "images/verbal_logic.png" "math")
-        [:p 
-         "Score 2691" [:br] 
-         "Rank 215 dari semua peserta" [:br]
-         "Lvl. 100 of 100"]
-        [:a {:href (str "/vl/" vl-id)} [:button "Start"]]]]
-      [:td
-       [:div.card2
-        (image "images/english.png" "math")
-        [:p 
-         "Score 2691" [:br] 
-         "Rank 215 dari semua peserta" [:br]
-         "Lvl. 100 of 100"]
-        [:a {:href (str "/english/" english-id)} [:button "Start"]]]]
-      [:td
-       [:div.card2
-        (image "images/clojure.png" "math")
-        [:p 
-         "Score 2691" [:br] 
-         "Rank 215 dari semua peserta" [:br]
-         "Lvl. 100 of 100"]
-        [:a {:href "/clojure"} [:button "Start"]]]]]]))
+     [:table
+      [:tr
+       [:td
+        [:div.card2
+         (image "images/math.png" "math")
+         [:p 
+          "Score 2691" [:br] 
+          "Rank 215 dari semua peserta" [:br]
+          "Lvl. 100 of 100"]
+         [:a {:href "/math"} [:button "Start"]]]]
+       [:td
+        [:div.card2
+         (image "images/verbal_logic.png" "vl")
+         [:p 
+          "Score 2691" [:br] 
+          "Rank 215 dari semua peserta" [:br]
+          "Lvl. 100 of 100"]
+         [:a {:href "/vl"} [:button "Start"]]]]
+       [:td
+        [:div.card2
+         (image "images/english.png" "english")
+         [:p 
+          "Score 2691" [:br] 
+          "Rank 215 dari semua peserta" [:br]
+          "Lvl. 100 of 100"]
+         [:a {:href "/english"} [:button "Start"]]]]
+       [:td
+        [:div.card2
+         (image "images/clojure.png" "clojure")
+         [:p 
+          "Score 2691" [:br] 
+          "Rank 215 dari semua peserta" [:br]
+          "Lvl. 100 of 100"]
+         [:a {:href "/clojure"} [:button "Start"]]]]]]]))

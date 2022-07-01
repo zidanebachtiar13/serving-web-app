@@ -35,10 +35,12 @@
                           (form/label (str "no" index) (get-in problems [index :soal :options 0 1]))
                           (form/radio-button (str "no" index) false "B")
                           (form/label (str "no" index) (get-in problems [index :soal :options 1 1]))
+                          [:br]
                           (form/radio-button (str "no" index) false "C")
                           (form/label (str "no" index) (get-in problems [index :soal :options 2 1]))
                           (form/radio-button (str "no" index) false "D")
                           (form/label (str "no" index) (get-in problems [index :soal :options 3 1]))
+                          [:br]
                           (form/radio-button (str "no" index) false "E")
                           (form/label (str "no" index) (get-in problems [index :soal :options 4 1]))])
              (inc index)))))
@@ -61,5 +63,4 @@
        (get (soal problems) 6)
        (get (soal problems) 7)
        (anti-forgery-field)
-       (form/submit-button "submit"))
-     [:a {:href "/result"} [:button "Udahan!"]]]))
+       (form/submit-button "submit"))]))

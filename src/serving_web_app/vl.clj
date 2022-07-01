@@ -1,6 +1,8 @@
 (ns serving-web-app.vl
   (:require [hiccup.page :refer [html5]]
-            [garden.core :refer [css]]))
+            [hiccup.form :as form]
+            [garden.core :refer [css]]
+            [ring.util.anti-forgery :refer (anti-forgery-field)]))
 
 (def style
   (css
@@ -21,17 +23,36 @@
               :display "inline-block"
               :font-size "15px"
               :cursor "pointer"}]))   
+
+(defn soal [problems]
+  (loop [items [] index 0]
+    (if (= index (count problems))
+      items
+      (recur (conj items [:div
+                          [:p (get-in problems [index :soal :soal-text])]
+                          (form/hidden-field (str "no" index "-id") (get-in problems [index :problem-id]))
+                          (form/radio-button (str "no" index) false "A")
+                          (form/label (str "no" index) (get-in problems [index :soal :options 0 1]))
+                          (form/radio-button (str "no" index) false "B")
+                          (form/label (str "no" index) (get-in problems [index :soal :options 1 1]))])
+             (inc index)))))
   
 
-(defn vl-quiz [problem]
+(defn vl-quiz [problems]
   (html5
     [:head
      [:title "Verbal Logic Quiz"]
      [:style style]]
     [:body
-     [:p (get-in problem [:soal :soal-text])]
-     [:table
-      [:tr
-       [:td [:p.jawaban [:b "A "] (get-in problem [:soal :options 0 1])]]
-       [:td [:p.jawaban [:b "B "] (get-in problem [:soal :options 1 1])]]]]
-     [:a {:href "/result"} [:button "Udahan!"]]]))
+     (form/form-to
+       [:post "/quiz"]
+       (get (soal problems) 0)
+       (get (soal problems) 1)
+       (get (soal problems) 2)
+       (get (soal problems) 3)
+       (get (soal problems) 4)
+       (get (soal problems) 5)
+       (get (soal problems) 6)
+       (get (soal problems) 7)
+       (anti-forgery-field)
+       (form/submit-button "submit"))]))

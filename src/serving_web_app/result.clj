@@ -9,7 +9,7 @@
           :font-size "150px"}]
     [:td {:text-align "center"}]))
 
-(def result-page
+(defn result-page [score]
   (html5
     [:head
      [:title "Result"]
@@ -17,9 +17,9 @@
     [:body
      [:table
       [:tr
-       [:th {:rowspan "6"} "+9"]
-       [:td "7" [:br] "Soal Benar"]]
+       [:th {:rowspan "6"} (str "+" @score)]
+       [:td @score [:br] "Soal Benar"]]
       [:tr
-       [:td "1" [:br] "Soal Salah"]]
+       [:td (- 8 @score) [:br] "Soal Salah"]]
       [:tr
        [:td "00:04" [:br] "Rata-Rata Waktu"]]]]))

@@ -11,10 +11,10 @@
             [serving-web-app.english :as english]))
 
 (defroutes app-routes
-  (GET "/" [] (dashboard/category (:problem-id (get (shuffle problem/vl) 0)) (:problem-id (get (shuffle problem/english) 0)))) 
+  (GET "/" [] dashboard/base-page) 
   (GET "/math" [] (math/math-quiz (problem/take-soal (shuffle problem/math))))
-  (GET "/vl/:vl-id" [vl-id] (vl/vl-quiz (problem/get-id vl-id)))
-  (GET "/english/:english-id" [english-id] (english/english-quiz (problem/get-id english-id)))
+  (GET "/vl" [] (vl/vl-quiz (problem/take-soal (shuffle problem/vl))))
+  (GET "/english" [] (english/english-quiz (problem/take-soal (shuffle problem/english))))
   (POST "/quiz" [no0-id no0 no1-id no1 no2-id no2 no3-id no3 no4-id no4 no5-id no5 no6-id no6 no7-id no7] (do (problem/reset-score)
                                                                                                               (problem/check no0-id no0)
                                                                                                               (problem/check no1-id no1)
