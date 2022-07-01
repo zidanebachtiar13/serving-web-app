@@ -1,1 +1,1 @@
-web: lein ring serve
+web: lein ring server
