@@ -27,7 +27,7 @@
         [:td.left "&nbsp&nbspLeaderboard"]]]]
      body]))
 
-(defn category [math-id vl-id english-id]
+(defn category [vl-id english-id]
   (base-page
     [:table
      [:tr
@@ -38,7 +38,7 @@
          "Score 2691" [:br] 
          "Rank 215 dari semua peserta" [:br]
          "Lvl. 100 of 100"]
-        [:a {:href (str "/math/" math-id)} [:button "Start"]]]]
+        [:a {:href "/math"} [:button "Start"]]]]
       [:td
        [:div.card2
         (image "images/verbal_logic.png" "math")
@@ -62,4 +62,4 @@
          "Score 2691" [:br] 
          "Rank 215 dari semua peserta" [:br]
          "Lvl. 100 of 100"]
-        [:a {:href "/content"} [:button "Start"]]]]]]))
+        [:a {:href "/clojure"} [:button "Start"]]]]]]))

@@ -1,6 +1,8 @@
 (ns serving-web-app.math
   (:require [hiccup.page :refer [html5]]
-            [garden.core :refer [css]]))
+            [hiccup.form :as form]
+            [garden.core :refer [css]]
+            [ring.util.anti-forgery :refer (anti-forgery-field)]))
 
 (def style
   (css
@@ -20,23 +22,44 @@
               :text-decoration "none"
               :display "inline-block"
               :font-size "15px"
-              :cursor "pointer"}]))   
-  
+              :cursor "pointer"}]))
 
-(defn math-quiz [problem]
+(defn soal [problems]
+  (loop [items [] index 0]
+    (if (= index (count problems))
+      items
+      (recur (conj items [:div
+                          [:p (get-in problems [index :soal :soal-text])]
+                          (form/hidden-field (str "no" index "-id") (get-in problems [index :problem-id]))
+                          (form/radio-button (str "no" index) false "A")
+                          (form/label (str "no" index) (get-in problems [index :soal :options 0 1]))
+                          (form/radio-button (str "no" index) false "B")
+                          (form/label (str "no" index) (get-in problems [index :soal :options 1 1]))
+                          (form/radio-button (str "no" index) false "C")
+                          (form/label (str "no" index) (get-in problems [index :soal :options 2 1]))
+                          (form/radio-button (str "no" index) false "D")
+                          (form/label (str "no" index) (get-in problems [index :soal :options 3 1]))
+                          (form/radio-button (str "no" index) false "E")
+                          (form/label (str "no" index) (get-in problems [index :soal :options 4 1]))])
+             (inc index)))))
+
+
+(defn math-quiz [problems]
   (html5
     [:head
      [:title "Math Quiz"]
      [:style style]]
     [:body
-     [:p (get-in problem [:soal :soal-text])]
-     [:table
-      [:tr
-       [:td [:p.jawaban [:b "A "] (get-in problem [:soal :options 0 1])]]
-       [:td [:p.jawaban [:b "C "] (get-in problem [:soal :options 2 1])]]]
-      [:tr
-       [:td [:p.jawaban [:b "B "] (get-in problem [:soal :options 1 1])]]
-       [:td [:p.jawaban [:b "D "] (get-in problem [:soal :options 3 1])]]]
-      [:tr
-       [:td [:p.jawaban [:b "E "] (get-in problem [:soal :options 4 1])]]]]
+     (form/form-to
+       [:post "/quiz"]
+       (get (soal problems) 0)
+       (get (soal problems) 1)
+       (get (soal problems) 2)
+       (get (soal problems) 3)
+       (get (soal problems) 4)
+       (get (soal problems) 5)
+       (get (soal problems) 6)
+       (get (soal problems) 7)
+       (anti-forgery-field)
+       (form/submit-button "submit"))
      [:a {:href "/result"} [:button "Udahan!"]]]))

@@ -21,3 +21,16 @@
     (if (= (:problem-id (get choice index)) problem-id)
       (get choice index)
       (recur (inc index) choice))))
+
+(defn take-soal [problem]
+  (subvec problem 0 8))
+
+(def score (atom 0))
+
+(defn reset-score []
+  (reset! score 0))
+
+(defn check [id jawaban]
+  (let [soal (get-id id)]
+    (when (= jawaban (get-in soal [:soal :jawaban]))
+      (swap! score inc))))
