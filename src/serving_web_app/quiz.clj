@@ -61,7 +61,6 @@
                                                                            (form/radio-button (str "no" index) false "D")
                                                                            (form/label (str "no" index) (get-in problems [index :soal :options 3 1]))]))
 
-
 (defn soal [problems]
   (loop [items [] index 0]
     (if (= index (count problems))
