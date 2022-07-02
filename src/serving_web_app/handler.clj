@@ -24,7 +24,7 @@
                                                                                                               (problem/check no7-id no7)
                                                                                                               (resp/redirect "/result"))) 
   (GET "/result" [] (result/result-page problem/score))
-  (route/not-found "Not Found"))
+  (route/not-found "Kontennya belum ada nih"))
 
 (def app
   (wrap-defaults app-routes site-defaults))
