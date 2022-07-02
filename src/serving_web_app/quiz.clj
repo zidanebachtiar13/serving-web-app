@@ -76,14 +76,8 @@
     [:body
      (form/form-to
        [:post "/quiz"]
-       (get (soal problems) 0)
-       (get (soal problems) 1)
-       (get (soal problems) 2)
-       (get (soal problems) 3)
-       (get (soal problems) 4)
-       (get (soal problems) 5)
-       (get (soal problems) 6)
-       (get (soal problems) 7)
+       (for [i (range 8)]
+         (get (soal problems) i))
        (anti-forgery-field)
        (form/submit-button "submit"))]))
 
