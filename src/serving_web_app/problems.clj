@@ -17,7 +17,7 @@
          choice (cond
                   (= (apply str (take 3 problem-id)) "565") math
                   (= (apply str (take 4 problem-id)) "5699") vl
-                  (= (apply str (take 4 problem-id)) "5690") english)]
+                  (= (apply str (take 4 problem-id)) "5690") english)] 
     (if (= (:problem-id (get choice index)) problem-id)
       (get choice index)
       (recur (inc index) choice))))
@@ -30,7 +30,16 @@
 (defn reset-score []
   (reset! score 0))
 
-(defn check [id jawaban]
+(defn check-jawaban [id jawaban]
   (let [soal (get-id id)]
     (when (= jawaban (get-in soal [:soal :jawaban]))
       (swap! score inc))))
+
+(def subject (atom nil))
+
+(defn change-subject [id]
+  (let [choice (cond
+                 (= (apply str (take 3 id)) "565") "/math"
+                 (= (apply str (take 4 id)) "5699") "/vl"
+                 (= (apply str (take 4 id)) "5690") "/english")] 
+    (reset! subject choice)))
