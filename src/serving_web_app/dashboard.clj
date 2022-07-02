@@ -2,6 +2,16 @@
   (:require [hiccup.page :refer [html5 include-css]]
             [hiccup.element :refer [image link-to]]))
 
+(defn category [subject]
+  [:td
+   [:div.card2
+    (image (str "images/" subject ".png") subject)
+    [:p
+     "Score 2691" [:br]
+     "Rank 215 dari semua peserta" [:br]
+     "Lvl. 100 of 100"]
+    (link-to (str "/" subject) [:button "Start"])]])
+
 (defn base-page [& body]
   (html5
     [:head
@@ -27,35 +37,7 @@
         [:td.left "&nbsp&nbspLeaderboard"]]]]
      [:table
       [:tr
-       [:td
-        [:div.card2
-         (image "images/math.png" "math")
-         [:p 
-          "Score 2691" [:br] 
-          "Rank 215 dari semua peserta" [:br]
-          "Lvl. 100 of 100"]
-         (link-to "/math" [:button "Start"])]]
-       [:td
-        [:div.card2
-         (image "images/verbal_logic.png" "vl")
-         [:p 
-          "Score 2691" [:br] 
-          "Rank 215 dari semua peserta" [:br]
-          "Lvl. 100 of 100"]
-         (link-to "/vl" [:button "Start"])]]
-       [:td
-        [:div.card2
-         (image "images/english.png" "english")
-         [:p 
-          "Score 2691" [:br] 
-          "Rank 215 dari semua peserta" [:br]
-          "Lvl. 100 of 100"]
-         (link-to "/english" [:button "Start"])]]
-       [:td
-        [:div.card2
-         (image "images/clojure.png" "clojure")
-         [:p 
-          "Score 2691" [:br] 
-          "Rank 215 dari semua peserta" [:br]
-          "Lvl. 100 of 100"]
-         (link-to "/clojure" [:button "Start"])]]]]]))
+       (category "math")
+       (category "vl")
+       (category "english")
+       (category "clojure")]]]))
