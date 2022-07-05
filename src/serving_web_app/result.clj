@@ -69,4 +69,4 @@
      [:br]
      (link-to @subject [:button.button1 "Main Lagi"])
      [:br]
-     [:button.button1 "Pembahasan"]]))
+     (link-to "/pembahasan" [:button.button1 "Pembahasan"])]))

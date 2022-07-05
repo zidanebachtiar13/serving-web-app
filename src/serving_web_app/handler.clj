@@ -6,7 +6,8 @@
             [serving-web-app.dashboard :as dashboard]
             [serving-web-app.result :as result]
             [serving-web-app.problems :as problem]
-            [serving-web-app.quiz :as quiz]))
+            [serving-web-app.quiz :as quiz]
+            [serving-web-app.pembahasan :as pembahasan]))
 
 (defroutes app-routes
   (GET "/" [] dashboard/base-page) 
@@ -25,6 +26,7 @@
                                                                                                               (problem/check-jawaban no7-id no7)
                                                                                                               (resp/redirect "/result"))) 
   (GET "/result" [] (result/result-page problem/score problem/subject))
+  (GET "/pembahasan" [] pembahasan/base-page)
   (route/not-found "Kontennya belum ada nih"))
 
 (def app
