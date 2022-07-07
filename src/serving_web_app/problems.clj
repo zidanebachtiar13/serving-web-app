@@ -30,10 +30,22 @@
 (defn reset-score []
   (reset! score 0))
 
+(def soal-salah (atom 0))
+
+(defn reset-soal-salah []
+  (reset! soal-salah 0))
+
+(def tak-terjawab (atom 0))
+
+(defn reset-tak-terjawab []
+  (reset! tak-terjawab 0))
+
 (defn check-jawaban [id jawaban]
   (let [soal (get-id id)]
-    (when (= jawaban (get-in soal [:soal :jawaban]))
-      (swap! score inc))))
+    (cond 
+      (nil? jawaban) (swap! tak-terjawab inc)
+      (= jawaban (get-in soal [:soal :jawaban])) (swap! score inc)
+      (not= jawaban (get-in soal [:soal :jawaban])) (swap! soal-salah inc))))
 
 (def subject (atom nil))
 
