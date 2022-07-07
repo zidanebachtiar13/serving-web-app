@@ -38,16 +38,19 @@
        :font-size "17px"
        :padding "60px"}]))
 
-(defn accuracy [score]
-  (let [acc (* (/ @score 8) 100)]
-    (if (ratio? acc)
-      (-> acc
-          (float)
-          (int)
-          (str "%"))
-      (str acc "%"))))
+(defn accuracy [score soal-salah]
+  (let [n (+ @score @soal-salah)]
+    (if (zero? n) 
+      "0%"
+      (let [acc (* (/ @score n) 100)]
+        (if (ratio? acc)
+          (-> acc
+              (float)
+              (int)
+              (str "%"))
+          (str acc "%"))))))
 
-(defn result-page [score subject]
+(defn result-page [score subject soal-salah tak-terjawab]
   (html5
     [:head
      [:title "Result"]
@@ -60,11 +63,11 @@
        [:th {:rowspan "4"} (str "+" @score)]
        [:td @score [:br] "Soal Benar"]]
       [:tr
-       [:td (- 8 @score) [:br] "Soal Salah"]]
+       [:td @soal-salah [:br] "Soal Salah"]]
       [:tr
-       [:td "00:04" [:br] "Rata-rata Waktu"]]
+       [:td @tak-terjawab [:br] "Soal Tak Terjawab"]]
       [:tr
-       [:td (accuracy score) [:br] "Tingkat Akurasi"]]]
+       [:td (accuracy score soal-salah) [:br] "Tingkat Akurasi"]]]
      (link-to "/" [:button.button2 "Udahan"])
      [:br]
      (link-to @subject [:button.button1 "Main Lagi"])
