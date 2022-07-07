@@ -18,7 +18,7 @@
                   (= (apply str (take 3 problem-id)) "565") math
                   (= (apply str (take 4 problem-id)) "5699") vl
                   (= (apply str (take 4 problem-id)) "5690") english)] 
-    (if (= (:problem-id (get choice index)) problem-id)
+    (if (= (get-in choice [index :problem-id]) problem-id)
       (get choice index)
       (recur (inc index) choice))))
 
@@ -42,10 +42,11 @@
 
 (defn check-jawaban [id jawaban]
   (let [soal (get-id id)]
-    (cond 
-      (nil? jawaban) (swap! tak-terjawab inc)
-      (= jawaban (get-in soal [:soal :jawaban])) (swap! score inc)
-      (not= jawaban (get-in soal [:soal :jawaban])) (swap! soal-salah inc))))
+    (if (nil? jawaban) 
+      (swap! tak-terjawab inc)
+      (if (= jawaban (get-in soal [:soal :jawaban])) 
+        (swap! score inc)
+        (swap! soal-salah inc)))))
 
 (def subject (atom nil))
 
