@@ -12,7 +12,7 @@
                (slurp)
                (read-string)))
 
-(defn get-id [problem-id]
+(defn get-soal-by-id [problem-id]
   (loop [index 0
          choice (cond
                   (= (apply str (take 3 problem-id)) "565") math
@@ -41,7 +41,7 @@
   (reset! tak-terjawab 0))
 
 (defn check-jawaban [id jawaban]
-  (let [soal (get-id id)]
+  (let [soal (get-soal-by-id id)]
     (if (nil? jawaban) 
       (swap! tak-terjawab inc)
       (if (= jawaban (get-in soal [:soal :jawaban])) 

@@ -1,23 +1,14 @@
 (ns serving-web-app.pembahasan
-  (:require [hiccup.page :refer [html5]]
+  (:require [hiccup.page :refer [html5 include-css]]
+            [hiccup.element :refer [link-to]]
             [garden.core :refer [css]]))
-
-(def style
-  (css
-    [:body 
-     {:background-color "#DCDCDC"
-      :margin "0"}]
-    [:.navbar 
-     {:background-color "white"
-      :overflow "hidden"
-      :top "0"
-      :width "100%"}]))
 
 (def base-page
   (html5
     [:head
      [:title "Pembahasan"]
-     [:style style]]
+     (include-css "css/pembahasan.css")]
     [:body
      [:div.navbar
-      [:h1 "Pembahasan"]]]))
+      (link-to "/" [:i.gg-close-r])
+      [:h2 "Pembahasan"]]]))

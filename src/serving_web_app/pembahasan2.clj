@@ -49,4 +49,4 @@
      [:div.tabcontent {:id "About"}
       [:h3 "About"]
       [:p "Who we are and what we do"]]
-     (nclude-js "js/script.js")]))
+     (include-js "js/script.js")]))
