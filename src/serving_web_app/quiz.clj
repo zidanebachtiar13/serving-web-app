@@ -26,48 +26,60 @@
 
 (defn subject [problems index]
   (cond
-    (= (apply str (take 3 (get-in problems [index :problem-id]))) "565") [:div.container
-                                                                          [:p (str (inc index) "/8")]
-                                                                          [:p (get-in problems [index :soal :soal-text])]
-                                                                          (form/hidden-field (str "no" index "-id") (get-in problems [index :problem-id]))
-                                                                          (form/radio-button (str "no" index) false "A")
-                                                                          (form/label (str "no" index) (str "   " (get-in problems [index :soal :options 0 1])))
-                                                                          [:br]
-                                                                          (form/radio-button (str "no" index) false "B")
-                                                                          (form/label (str "no" index) (str "   " (get-in problems [index :soal :options 1 1])))
-                                                                          [:br]
-                                                                          (form/radio-button (str "no" index) false "C")
-                                                                          (form/label (str "no" index) (str "   " (get-in problems [index :soal :options 2 1])))
-                                                                          [:br]
-                                                                          (form/radio-button (str "no" index) false "D")
-                                                                          (form/label (str "no" index) (str "   " (get-in problems [index :soal :options 3 1])))
-                                                                          [:br]
-                                                                          (form/radio-button (str "no" index) false "E")
-                                                                          (form/label (str "no" index) (str "   " (get-in problems [index :soal :options 4 1])))]
-    (= (apply str (take 4 (get-in problems [index :problem-id]))) "5699") [:div.container
-                                                                           [:p (str (inc index) "/8")]
-                                                                           [:p (get-in problems [index :soal :soal-text])]
-                                                                           (form/hidden-field (str "no" index "-id") (get-in problems [index :problem-id]))
-                                                                           (form/radio-button (str "no" index) false "A")
-                                                                           (form/label (str "no" index) (str "   " (get-in problems [index :soal :options 0 1])))
-                                                                           [:br]
-                                                                           (form/radio-button (str "no" index) false "B")
-                                                                           (form/label (str "no" index) (str "   " (get-in problems [index :soal :options 1 1])))]
-    (= (apply str (take 4 (get-in problems [index :problem-id]))) "5690") [:div.container
-                                                                           [:p (str (inc index) "/8")]
-                                                                           [:p (get-in problems [index :soal :soal-text])]
-                                                                           (form/hidden-field (str "no" index "-id") (get-in problems [index :problem-id]))
-                                                                           (form/radio-button (str "no" index) false "A")
-                                                                           (form/label (str "no" index) (str "   " (get-in problems [index :soal :options 0 1])))
-                                                                           [:br]
-                                                                           (form/radio-button (str "no" index) false "B")
-                                                                           (form/label (str "no" index) (str "   " (get-in problems [index :soal :options 1 1])))
-                                                                           [:br]
-                                                                           (form/radio-button (str "no" index) false "C")
-                                                                           (form/label (str "no" index) (str "   " (get-in problems [index :soal :options 2 1])))
-                                                                           [:br]
-                                                                           (form/radio-button (str "no" index) false "D")
-                                                                           (form/label (str "no" index) (str "   " (get-in problems [index :soal :options 3 1])))]))
+    (nil? (get-in problems [index :soal :options 2 1])) [:div.container
+                                                         [:p (str (inc index) "/8")]
+                                                         [:p (get-in problems [index :soal :soal-text])]
+                                                         (form/hidden-field (str "no" index "-id") (get-in problems [index :problem-id]))
+                                                         (form/radio-button (str "no" index) false "A")
+                                                         (form/label (str "no" index) (str "   " (get-in problems [index :soal :options 0 1])))
+                                                         [:br]
+                                                         (form/radio-button (str "no" index) false "B")
+                                                         (form/label (str "no" index) (str "   " (get-in problems [index :soal :options 1 1])))]
+    (nil? (get-in problems [index :soal :options 3 1])) [:div.container
+                                                         [:p (str (inc index) "/8")]
+                                                         [:p (get-in problems [index :soal :soal-text])]
+                                                         (form/hidden-field (str "no" index "-id") (get-in problems [index :problem-id]))
+                                                         (form/radio-button (str "no" index) false "A")
+                                                         (form/label (str "no" index) (str "   " (get-in problems [index :soal :options 0 1])))
+                                                         [:br]
+                                                         (form/radio-button (str "no" index) false "B")
+                                                         (form/label (str "no" index) (str "   " (get-in problems [index :soal :options 1 1])))
+                                                         [:br]
+                                                         (form/radio-button (str "no" index) false "C")
+                                                         (form/label (str "no" index) (str "   " (get-in problems [index :soal :options 2 1])))]
+    (nil? (get-in problems [index :soal :options 4 1])) [:div.container
+                                                         [:p (str (inc index) "/8")]
+                                                         [:p (get-in problems [index :soal :soal-text])]
+                                                         (form/hidden-field (str "no" index "-id") (get-in problems [index :problem-id]))
+                                                         (form/radio-button (str "no" index) false "A")
+                                                         (form/label (str "no" index) (str "   " (get-in problems [index :soal :options 0 1])))
+                                                         [:br]
+                                                         (form/radio-button (str "no" index) false "B")
+                                                         (form/label (str "no" index) (str "   " (get-in problems [index :soal :options 1 1])))
+                                                         [:br]
+                                                         (form/radio-button (str "no" index) false "C")
+                                                         (form/label (str "no" index) (str "   " (get-in problems [index :soal :options 2 1])))
+                                                         [:br]
+                                                         (form/radio-button (str "no" index) false "D")
+                                                         (form/label (str "no" index) (str "   " (get-in problems [index :soal :options 3 1])))]
+    :else [:div.container
+           [:p (str (inc index) "/8")]
+           [:p (get-in problems [index :soal :soal-text])]
+           (form/hidden-field (str "no" index "-id") (get-in problems [index :problem-id]))
+           (form/radio-button (str "no" index) false "A")
+           (form/label (str "no" index) (str "   " (get-in problems [index :soal :options 0 1])))
+           [:br]
+           (form/radio-button (str "no" index) false "B")
+           (form/label (str "no" index) (str "   " (get-in problems [index :soal :options 1 1])))
+           [:br]
+           (form/radio-button (str "no" index) false "C")
+           (form/label (str "no" index) (str "   " (get-in problems [index :soal :options 2 1])))
+           [:br]
+           (form/radio-button (str "no" index) false "D")
+           (form/label (str "no" index) (str "   " (get-in problems [index :soal :options 3 1])))
+           [:br]
+           (form/radio-button (str "no" index) false "E")
+           (form/label (str "no" index) (str "   " (get-in problems [index :soal :options 4 1])))]))
 
 (defn soal [problems]
   (loop [items [] index 0]
