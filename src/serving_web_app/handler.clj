@@ -7,30 +7,28 @@
             [serving-web-app.result :as result]
             [serving-web-app.problems :as problem]
             [serving-web-app.quiz :as quiz]
-            [serving-web-app.pembahasan :as pembahasan]
-            [serving-web-app.pembahasan2 :as pembahasan2]))
+            [serving-web-app.pembahasan :as pembahasan]))
 
 (defroutes app-routes
   (GET "/" [] dashboard/base-page) 
   (GET "/math" [] (quiz/math-quiz (problem/take-soal (shuffle problem/math))))
   (GET "/vl" [] (quiz/vl-quiz (problem/take-soal (shuffle problem/vl))))
   (GET "/english" [] (quiz/english-quiz (problem/take-soal (shuffle problem/english))))
-  (POST "/quiz" [no0-id no0 no1-id no1 no2-id no2 no3-id no3 no4-id no4 no5-id no5 no6-id no6 no7-id no7] (do (problem/reset-score)
-                                                                                                              (problem/reset-soal-salah)
-                                                                                                              (problem/reset-tak-terjawab)
-                                                                                                              (problem/change-subject no0-id)
-                                                                                                              (problem/check-jawaban no0-id no0)
-                                                                                                              (problem/check-jawaban no1-id no1)
-                                                                                                              (problem/check-jawaban no2-id no2)
-                                                                                                              (problem/check-jawaban no3-id no3)
-                                                                                                              (problem/check-jawaban no4-id no4)
-                                                                                                              (problem/check-jawaban no5-id no5)
-                                                                                                              (problem/check-jawaban no6-id no6)
-                                                                                                              (problem/check-jawaban no7-id no7)
-                                                                                                              (resp/redirect "/result"))) 
+  (POST "/quiz" [topic no0-id no0 no1-id no1 no2-id no2 no3-id no3 no4-id no4 no5-id no5 no6-id no6 no7-id no7] (do (problem/reset-score)
+                                                                                                                    (problem/reset-soal-salah)
+                                                                                                                    (problem/reset-tak-terjawab)
+                                                                                                                    (problem/change-subject topic)
+                                                                                                                    (problem/check-jawaban topic no0-id no0)
+                                                                                                                    (problem/check-jawaban topic no1-id no1)
+                                                                                                                    (problem/check-jawaban topic no2-id no2)
+                                                                                                                    (problem/check-jawaban topic no3-id no3)
+                                                                                                                    (problem/check-jawaban topic no4-id no4)
+                                                                                                                    (problem/check-jawaban topic no5-id no5)
+                                                                                                                    (problem/check-jawaban topic no6-id no6)
+                                                                                                                    (problem/check-jawaban topic no7-id no7)
+                                                                                                                    (resp/redirect "/result"))) 
   (GET "/result" [] (result/result-page problem/score problem/subject problem/soal-salah problem/tak-terjawab))
   (GET "/pembahasan" [] pembahasan/base-page)
-  (GET "/pembahasan2" [] pembahasan2/base-page)
   (route/not-found "Kontennya belum ada nih"))
 
 (def app

@@ -96,6 +96,7 @@
     [:body
      (form/form-to
        [:post "/quiz"]
+       (form/hidden-field "topic" (get-in problems [0 :topic]))
        (for [i (range 8)]
          (get (soal problems) i))
        (anti-forgery-field)
