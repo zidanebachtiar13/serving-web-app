@@ -104,12 +104,7 @@
                  (= topic "english") "/english")] 
     (reset! subject choice)))
 
-(def pembahasan (atom []))
+(def soal (atom nil))
 
-(defn reset-pembahasan []
- (reset! pembahasan [])) 
-
-(defn get-pembahasan-by-id [bahas]
-  (let [[topic no0-id no1-id no2-id no3-id no4-id no5-id no6-id no7-id] bahas]
-    (for [i (range 8)]
-      (swap! pembahasan conj (get-soal-by-id topic (str "no" i "-id"))))))
+(defn save-soal [problems]
+  (reset! soal (read-string (str "[" problems "]"))))
