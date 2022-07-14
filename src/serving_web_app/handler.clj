@@ -17,8 +17,10 @@
   (POST "/quiz" [problems topic no0-id no0 no1-id no1 no2-id no2 no3-id no3 no4-id no4 no5-id no5 no6-id no6 no7-id no7] (do (problem/reset-score)
                                                                                                                              (problem/reset-soal-salah)
                                                                                                                              (problem/reset-tak-terjawab)
+                                                                                                                             (problem/reset-jawaban)
                                                                                                                              (problem/change-subject topic)
                                                                                                                              (problem/save-soal problems)
+                                                                                                                             (problem/save-jawaban no0 no1 no2 no3 no4 no5 no6 no7)
                                                                                                                              (problem/check-jawaban topic no0-id no0)
                                                                                                                              (problem/check-jawaban topic no1-id no1)
                                                                                                                              (problem/check-jawaban topic no2-id no2)
@@ -29,7 +31,7 @@
                                                                                                                              (problem/check-jawaban topic no7-id no7)
                                                                                                                              (resp/redirect "/result"))) 
   (GET "/result" [] (result/result-page problem/score problem/subject problem/soal-salah problem/tak-terjawab))
-  (GET "/pembahasan" [] (pembahasan/base-page problem/soal))
+  (GET "/pembahasan" [] (pembahasan/base-page problem/soal problem/jawaban))
   (route/not-found "Kontennya belum ada nih"))
 
 (def app

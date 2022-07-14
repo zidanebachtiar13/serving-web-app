@@ -108,3 +108,17 @@
 
 (defn save-soal [problems]
   (reset! soal (read-string (str "[" problems "]"))))
+
+(def jawaban (atom nil))
+
+(defn pilihan [jawaban]
+  (cond
+    (nil? jawaban) "kosong"
+    (= jawaban "A") 0
+    (= jawaban "B") 1
+    (= jawaban "C") 2
+    (= jawaban "D") 3
+    (= jawaban "E") 4))
+
+(defn save-jawaban [no0 no1 no2 no3 no4 no5 no6 no7]
+  (reset! jawaban (read-string (str "[" (pilihan no0) " " (pilihan no1) " " (pilihan no2) " " (pilihan no3) " " (pilihan no4) " " (pilihan no5) " " (pilihan no6) " " (pilihan no7) "]"))))
