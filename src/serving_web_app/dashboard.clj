@@ -7,9 +7,9 @@
    [:div.card2
     (image (str "images/" subject ".png") subject)
     [:p
-     "Score 2691" [:br]
-     "Rank 215 dari semua peserta" [:br]
-     "Lvl. 100 of 100"]
+     "Score 0" [:br]
+     "Rank 0 dari semua peserta" [:br]
+     "Lvl. 0 of 100"]
     (link-to (str "/" subject) [:button "Start"])]])
 
 (defn base-page [& body]
@@ -21,13 +21,13 @@
      [:div.card
       [:table
        [:tr
-        [:td.headText "Zidane Bachtiar"]
+        [:td.headText "Full Name"]
         [:td]]
        [:tr
-        [:td "Total Score 1019 Points"]
+        [:td "Total Score 0 Points"]
         [:td]]
        [:tr
-        [:td.lightText "Rank 100 dari semua peserta"]
+        [:td.lightText "Rank 0 dari semua peserta"]
         [:td
          [:div.logout (link-to "/logout" "Log out")]]]]]
      [:a.button {:href "/leaderboard"}
