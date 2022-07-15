@@ -36,6 +36,7 @@
 (defn base-page [soal kumpulan-jawaban]
   (html5
     [:head
+     [:meta {:name "viewport" :content "width=device-width, initial-scale=1"}]
      [:title "Pembahasan"]
      (include-css "css/pembahasan.css")]
     [:body

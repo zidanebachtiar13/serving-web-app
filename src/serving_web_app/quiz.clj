@@ -91,6 +91,7 @@
 (defn base-quiz [title problems]
   (html5
     [:head
+     [:meta {:name "viewport" :content "width=device-width, initial-scale=1"}]
      [:title title]
      [:style style]]
     [:body

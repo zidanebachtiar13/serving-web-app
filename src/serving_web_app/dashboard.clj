@@ -15,6 +15,7 @@
 (defn base-page [& body]
   (html5
     [:head
+     [:meta {:name "viewport" :content "width=device-width, initial-scale=1"}]
      [:title "Dashboard"]
      (include-css "css/dashboard.css")]
     [:body

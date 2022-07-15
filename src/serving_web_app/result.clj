@@ -53,6 +53,7 @@
 (defn result-page [score subject soal-salah tak-terjawab]
   (html5
     [:head
+     [:meta {:name "viewport" :content "width=device-width, initial-scale=1"}]
      [:title "Result"]
      [:style style]]
     [:body
